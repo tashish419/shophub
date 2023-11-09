@@ -1,6 +1,9 @@
 import { NavLink } from "react-router-dom";
+import React , { useState } from "react";
 
 export default function Header() {
+  const [isLogin, setIsLogin] = useState("Log Out");
+
   return (
     <header className="header">
       <NavLink className="brand-logo" to="/home">
@@ -26,10 +29,19 @@ export default function Header() {
           </NavLink>
           <a className="nav-link">Blog</a>
           <a className="nav-link">Contact</a>
-          <NavLink className="nav-link active" to="/login" aria-current="page">
-            Login
+          <NavLink
+            className="nav-link active"
+            to="/login"
+            aria-current="page"
+            onClick={() => {
+              isLogin === "Log Out"
+                ? setIsLogin("Log In")
+                : setIsLogin("Log Out");
+            }}
+          >
+            {isLogin}
           </NavLink>
-          <a className="nav-link">SignUp</a>
+          {/* <a className="nav-link">SignUp</a> */}
           <a className="nav-link">My Account</a>
           <div className="cart">
             <div className="cart-icon">
